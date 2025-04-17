@@ -4,11 +4,11 @@
     "listenEvents": true,
     "selfListen": false,
     "forceLogin": true,
-    "botName": "NexaSim V2",
-    "ownerName": "Hridoy",
-    "ownerUid": "61552837791926",
+    "botName": "Raphael",
+    "ownerName": "Pat",
+    "ownerUid": "100072403222845",
     "adminUids": [
-      "61552837791926"
+      "100072403222845"
     ]
   },
   "logging": {
