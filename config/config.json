@@ -4,15 +4,15 @@
     "listenEvents": true,
     "selfListen": false,
     "forceLogin": true,
-    "botName": "Test",
+    "botName": "Great Sage",
     "ownerName": "Pat",
     "ownerUid": "100072403222845",
     "adminUids": [
       "100072403222845"
     ],
     "login": {
-      "username": "your_username_here",
-      "password": "your_password_here"
+      "username": "Patrick",
+      "password": "isangtite"
     }
   },
   "logging": {
@@ -22,5 +22,5 @@
     "maxRetries": 3,
     "retryDelay": 5000
   },
-  "language": "bn"
+  "language": "en"
 }
