@@ -28,16 +28,16 @@ module.exports = {
             }
 
             const details = [
-                `╔═━─[ ${config.bot.botName} COMMAND DETAILS ]─━═╗`,
-                `┃ Name: ${command.name}`,
-                `┃ Version: ${command.version}`,
-                `┃ Author: ${command.author}`,
-                `┃ Category: ${command.commandCategory.toUpperCase()}`,
-                `┃ Description: ${command.description}`,
-                `┃ Guide: ${command.guide.replace(/{pn}/g, prefix)}`,
-                `┃ Cooldown: ${command.cooldowns} seconds`,
-                `┃ Admin Only: ${command.adminOnly ? "Yes" : "No"}`,
-                `╚═━──────────────────────────────━═╝`
+                `「 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐃𝐄𝐓𝐀𝐈𝐋𝐒 」`,
+                `│ Name: ${command.name}`,
+                `│ Version: ${command.version}`,
+                `│ Author: ${command.author}`,
+                `│ Category: ${command.commandCategory.toUpperCase()}`,
+                `│ Description: ${command.description}`,
+                `│ Guide: ${command.guide.replace(/{pn}/g, prefix)}`,
+                `│ Cooldown: ${command.cooldowns} seconds`,
+                `│ Admin Only: ${command.adminOnly ? "Yes" : "No"}`,
+                `╰──────────────────╯`
             ].join('\n');
             return api.sendMessage(details, event.threadID);
         }
