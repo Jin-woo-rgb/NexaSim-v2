@@ -28,7 +28,7 @@ module.exports = {
         const sendTime = new Date().toLocaleString('en-US', { timeZone: 'UTC', dateStyle: 'medium', timeStyle: 'short' });
 
         const notificationMessage = [
-            `╭────「 𝐀𝐍𝐍𝐎𝐔𝐍𝐂𝐄𝐌𝐄𝐍𝐓 」────╮`,
+            `╭──「 𝐀𝐍𝐍𝐎𝐔𝐍𝐂𝐄𝐌𝐄𝐍𝐓 」──╮`,
             `│ Admin: ${adminName}`,
             `│ Time: ${sendTime} (UTC)`,
             `│ Message: ${notificationText}`,
