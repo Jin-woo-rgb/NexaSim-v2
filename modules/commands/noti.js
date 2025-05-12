@@ -28,11 +28,11 @@ module.exports = {
         const sendTime = new Date().toLocaleString('en-US', { timeZone: 'UTC', dateStyle: 'medium', timeStyle: 'short' });
 
         const notificationMessage = [
-            `╔═━─[ ${config.bot.botName} NOTIFICATION ]─━═╗`,
-            `┃ Admin: ${adminName}`,
-            `┃ Time: ${sendTime} (UTC)`,
-            `┃ Message: ${notificationText}`,
-            `╚═━──────────────────────────────━═╝`
+            `╭────「 𝐀𝐍𝐍𝐎𝐔𝐍𝐂𝐄𝐌𝐄𝐍𝐓 」────╮`,
+            `│ Admin: ${adminName}`,
+            `│ Time: ${sendTime} (UTC)`,
+            `│ Message: ${notificationText}`,
+            `╰─────────────────╯`
         ].join('\n');
 
         const threadList = await new Promise((resolve) => api.getThreadList(100, null, ['INBOX'], (err, list) => resolve(err ? [] : list)));
