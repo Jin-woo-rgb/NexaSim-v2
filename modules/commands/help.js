@@ -51,25 +51,27 @@ module.exports = {
 
         const categoryLines = Object.entries(categories).map(([category, cmds]) => {
             return [
-                `✦  ${category}`,
-                `  └─ ${cmds.join(', ')}`,
+                `✦「 ${category} 」`,
+                `  ╰┈ ${cmds.join(', ')}`,
                 ``
             ].join('\n');
         }).join('\n');
 
         const totalCommands = commands.size;
         const helpMessage = [
-            `╔═━─[  ${config.bot.botName} COMMAND LIST  ]─━═╗`,
-            `┃ Your personal Messenger assistant 💻`,
-            `┃ Built for speed. Packed with swag.`,
-            `╠══════════════════════════════════╣`,
+            `╭┈「 COMMAND LIST 」┄╮`,
+            `│ Your personal Messenger assistant 💻`,
+            `│ Built for speed. Packed with swag.`,
+            `━━━━━━━━━━━━━━━━━━━━
+`,
             ``,
             categoryLines,
-            `╠══════════════════════════════════╣`,
-            `┃ Total Commands: ${totalCommands}`,
-            `┃ Type ${prefix}help <cmd> for details`,
-            `┃ Owner: ${config.bot.ownerName}`,
-            `╚═━──────────────────────────────━═╝`
+            `━━━━━━━━━━━━━━━━━━━━
+`,
+            `│ Total Commands: ${totalCommands}`,
+            `│ Type ${prefix}help <cmd> for details`,
+            `│ Owner: ${config.bot.ownerName}`,
+            `╰──────────────────╯`
         ].join('\n');
 
         api.sendMessage(helpMessage, event.threadID);
