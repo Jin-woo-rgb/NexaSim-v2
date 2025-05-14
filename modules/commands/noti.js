@@ -1,4 +1,7 @@
 const config = require('../../config/config.json');
+const axios = require('axios');
+const fs = require('fs-extra');
+const path = require('path');
 const logger = require('../../includes/logger');
 
 module.exports = {
@@ -34,45 +37,63 @@ module.exports = {
             'https://i.ibb.co/7NWWs75y/received-1194786248899049.jpg'
         ];
 
+     
         const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
         logger.info(`Selected random image URL: ${randomImageUrl}`);
 
-        const notificationMessage = [
-            `╭─「 𝐀𝐍𝐍𝐎𝐔𝐍𝐂𝐄𝐌𝐄𝐍𝐓 」─╮`,
-            `│ Admin: ${adminName}`,
-            `│ Time: ${sendTime} (UTC)`,
-            `│ Message: ${notificationText}`,
-            `╰─────────────────╯`
-        ].join('\n');
+        const tempDir = path.join(__dirname, '../../temp');
+        const tempFilePath = path.join(tempDir, `noti_image_${Date.now()}.jpg`);
+        await fs.ensureDir(tempDir);
 
-        const threadList = await new Promise((resolve) => api.getThreadList(100, null, ['INBOX'], (err, list) => resolve(err ? [] : list)));
-        const groupThreads = threadList.filter(thread => thread.isGroup);
+        try {
+         
+            const imageResponse = await axios.get(randomImageUrl, { responseType: 'arraybuffer' });
+            await fs.writeFile(tempFilePath, imageResponse.data);
 
-        if (groupThreads.length === 0) {
-            return api.sendMessage(`${config.bot.botName}: ⚠️ No group chats found to send the notification.`, event.threadID);
-        }
+            const notificationMessage = [
+                `╭─「 𝐀𝐍𝐍𝐎𝐔𝐍𝐂𝐄𝐌𝐄𝐍𝐓 」─╮`,
+                `│ Admin: ${adminName}`,
+                `│ Time: ${sendTime} (UTC)`,
+                `│ Message: ${notificationText}`,
+                `╰─────────────────╯`
+            ].join('\n');
 
-        for (const thread of groupThreads) {
-            await new Promise((resolve) => {
+            const threadList = await new Promise((resolve) => api.getThreadList(100, null, ['INBOX'], (err, list) => resolve(err ? [] : list)));
+            const groupThreads = threadList.filter(thread => thread.isGroup);
 
-                api.sendMessage(
-                    {
-                        body: notificationMessage,
-                        attachment: randomImageUrl 
-                    },
-                    thread.threadID,
-                    (err) => {
-                        if (err) {
-                            logger.error(`Failed to send notification to thread ${thread.threadID}: ${err.message}`);
-                        } else {
-                            logger.info(`Sent notification with image to thread ${thread.threadID}`);
+            if (groupThreads.length === 0) {
+                return api.sendMessage(`${config.bot.botName}: ⚠️ No group chats found to send the notification.`, event.threadID);
+            }
+
+            for (const thread of groupThreads) {
+                await new Promise((resolve) => {
+                    api.sendMessage(
+                        {
+                            body: notificationMessage,
+                            attachment: fs.createReadStream(tempFilePath)
+                        },
+                        thread.threadID,
+                        (err) => {
+                            if (err) {
+                                logger.error(`Failed to send notification to thread ${thread.threadID}: ${err.message}`);
+                            } else {
+                                logger.info(`Sent notification with image to thread ${thread.threadID}`);
+                            }
+                            resolve();
                         }
-                        resolve();
-                    }
-                );
-            });
-        }
+                    );
+                });
+            }
 
-        api.sendMessage(`${config.bot.botName}: ✅ Notification sent to ${groupThreads.length} group(s) with an image.`, event.threadID);
+            await fs.unlink(tempFilePath); 
+            logger.info(`Deleted temporary image file: ${tempFilePath}`);
+            api.sendMessage(`${config.bot.botName}: ✅ Notification sent to ${groupThreads.length} group(s) with an image.`, event.threadID);
+        } catch (error) {
+            logger.error(`Error in noti command: ${error.message}`);
+            if (fs.existsSync(tempFilePath)) {
+                await fs.unlink(tempFilePath).catch(() => {}); 
+            }
+            api.sendMessage(`${config.bot.botName}: ❌ Failed to send the notification: ${error.message}`, event.threadID);
+        }
     }
 };
