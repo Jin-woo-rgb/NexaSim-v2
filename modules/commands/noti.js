@@ -14,7 +14,7 @@ module.exports = {
 
     async execute({ api, event, args }) {
         if (!event || !event.threadID || !event.messageID) {
-            console.error("Invalid event object in noti command");
+            logger.error("Invalid event object in noti command");
             return api.sendMessage(`${config.bot.botName}: ❌ Invalid event data.`, event.threadID);
         }
 
@@ -26,6 +26,16 @@ module.exports = {
         const adminInfo = await new Promise((resolve) => api.getUserInfo(event.senderID, (err, info) => resolve(err ? {} : info)));
         const adminName = adminInfo[event.senderID]?.name || "Admin";
         const sendTime = new Date().toLocaleString('en-US', { timeZone: 'UTC', dateStyle: 'medium', timeStyle: 'short' });
+
+        const imageUrls = [
+            'https://i.ibb.co/j9Yxvsqh/received-1177990383583260.jpg',
+            'https://i.ibb.co/366fWs7/received-2074061876450629.jpg',
+            'https://i.ibb.co/KjJDQfzN/received-674994471827469.jpg',
+            'https://i.ibb.co/7NWWs75y/received-1194786248899049.jpg'
+        ];
+
+        const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+        logger.info(`Selected random image URL: ${randomImageUrl}`);
 
         const notificationMessage = [
             `╭─「 𝐀𝐍𝐍𝐎𝐔𝐍𝐂𝐄𝐌𝐄𝐍𝐓 」─╮`,
@@ -44,17 +54,25 @@ module.exports = {
 
         for (const thread of groupThreads) {
             await new Promise((resolve) => {
-                api.sendMessage(notificationMessage, thread.threadID, (err) => {
-                    if (err) {
-                        logger.error(`Failed to send notification to thread ${thread.threadID}: ${err.message}`);
-                    } else {
-                        logger.info(`Sent notification to thread ${thread.threadID}`);
+
+                api.sendMessage(
+                    {
+                        body: notificationMessage,
+                        attachment: randomImageUrl 
+                    },
+                    thread.threadID,
+                    (err) => {
+                        if (err) {
+                            logger.error(`Failed to send notification to thread ${thread.threadID}: ${err.message}`);
+                        } else {
+                            logger.info(`Sent notification with image to thread ${thread.threadID}`);
+                        }
+                        resolve();
                     }
-                    resolve();
-                });
+                );
             });
         }
 
-        api.sendMessage(`${config.bot.botName}: ✅ Notification sent to ${groupThreads.length} group(s).`, event.threadID);
+        api.sendMessage(`${config.bot.botName}: ✅ Notification sent to ${groupThreads.length} group(s) with an image.`, event.threadID);
     }
 };
