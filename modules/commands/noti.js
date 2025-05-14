@@ -55,7 +55,7 @@ module.exports = {
                 `│ Admin: ${adminName}`,
                 `│ Time: ${sendTime} (UTC)`,
                 `│ Message: ${notificationText}`,
-                `╰─────────────────╯`
+                `╰────────────────╯`
             ].join('\n');
 
             const threadList = await new Promise((resolve) => api.getThreadList(100, null, ['INBOX'], (err, list) => resolve(err ? [] : list)));
