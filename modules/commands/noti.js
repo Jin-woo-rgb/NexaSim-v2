@@ -51,7 +51,7 @@ module.exports = {
             await fs.writeFile(tempFilePath, imageResponse.data);
 
             const notificationMessage = [
-                `╭─「 𝐀𝐍𝐍𝐎𝐔𝐍𝐂𝐄𝐌𝐄𝐍𝐓 」─╮`,
+                `╭───「 𝐍𝐎𝐓𝐈𝐂𝐄 」───╮`,
                 `│ Admin: ${adminName}`,
                 `│ Time: ${sendTime} (UTC)`,
                 `│ Message: ${notificationText}`,
