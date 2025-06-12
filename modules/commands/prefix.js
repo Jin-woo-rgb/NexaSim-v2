@@ -26,12 +26,12 @@ module.exports = {
         const ownerName = ownerInfo[config.bot.ownerUid]?.name || "Unknown";
 
         const message = [
-            `╔═━─[ ${config.bot.botName} INFO ]─━═╗`,
-            `┃ 🎗️ Bot Name: ${config.bot.botName}`,
-            `┃ 👨‍👩‍👧‍👦 Total Members: ${totalMembers}`,
-            `┃ 👑 Owner: ${ownerName}`,
-            `┃ ℹ️  Prefix: ${config.bot.prefix}`,
-            `╚═━──────────────────────────────━═╝`
+            `╭────「 ${config.bot.botName} INFO 」────╮`,
+            `│ 🎗️ Bot Name: ${config.bot.botName}`,
+            `│ 👨‍👩‍👧‍👦 Total Members: ${totalMembers}`,
+            `│ 👑 Owner: ${ownerName}`,
+            `│ ℹ️  Prefix: ${config.bot.prefix}`,
+            `╰─────────────────╯`
         ].join('\n');
 
         api.sendMessage(message, event.threadID);
