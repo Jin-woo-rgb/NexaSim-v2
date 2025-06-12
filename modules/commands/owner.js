@@ -17,10 +17,10 @@ module.exports = {
         const messageID = event.messageID;
 
         const ownerInfo = {
-            name: "Hridoy Khan",
-            github: "https://github.com/hridoykhans",
-            facebook: "https://www.facebook.com/hridoykhanofficial",
-            email: "hridoy@example.com",
+            name: "Patrick",
+            github: "N/A",
+            facebook: "https://www.facebook.com/61576612175253",
+            email: "N/A",
             bio: "Developer and creator of NexaSim V2. Passionate about coding and AI."
         };
 
@@ -29,16 +29,14 @@ module.exports = {
         try {
  
             const asciiArt = `
-╔════════════════════╗
-║     OWNER INFO     ║
-╠════════════════════╣
-║ Name: ${ownerInfo.name}      ║
-╟────────────────────╢
-║ GitHub: ${ownerInfo.github}  ║
-║ Facebook: ${ownerInfo.facebook} ║
-║ Email: ${ownerInfo.email}    ║
-║ Bio: ${ownerInfo.bio}        ║
-╚════════════════════╝
+╭────Owner info─────╮
+│ Name: ${ownerInfo.name}
+━━━━━━━━━━━━━━━━━━━━
+│ GitHub: ${ownerInfo.github}
+│ Facebook: ${ownerInfo.facebook}
+│ Email: ${ownerInfo.email}
+│ Bio: ${ownerInfo.bio}
+╰──────────────────╯
 Feel free to reach out! 😊
 `;
 
