@@ -4,15 +4,15 @@
     "listenEvents": true,
     "selfListen": false,
     "forceLogin": true,
-    "botName": "NexaSim V2",
-    "ownerName": "Hridoy",
-    "ownerUid": "61552837791926",
+    "botName": "Great Sage",
+    "ownerName": "Pat",
+    "ownerUid": "61576612175253",
     "adminUids": [
-      "61552837791926"
+      "61576612175253"
     ],
     "login": {
-      "username": "your_username_here",
-      "password": "your_password_here"
+      "username": "Pat",
+      "password": "isangtite"
     }
   },
   "logging": {
