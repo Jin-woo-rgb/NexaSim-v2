@@ -28,7 +28,7 @@ module.exports = {
             }
 
             const details = [
-                `╭────「 COMMAND DETAILS 」────╮`,
+                `「 COMMAND DETAILS 」`,
                 `│ Name: ${command.name}`,
                 `│ Version: ${command.version}`,
                 `│ Author: ${command.author}`,
@@ -59,7 +59,7 @@ module.exports = {
 
         const totalCommands = commands.size;
         const helpMessage = [
-            `╭────「 COMMAND LIST 」────╮`,
+            `╭┈「 COMMAND LIST 」┈╮`,
             `│ Your personal Messenger assistant 💻`,
             `│ Built for speed. Packed with swag.`,
             `━━━━━━━━━━━━━━━━━━━━`,
