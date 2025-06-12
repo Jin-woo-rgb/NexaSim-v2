@@ -11,7 +11,7 @@
       "61576612175253"
     ],
     "login": {
-      "username": "Pat",
+      "username": "Patrick",
       "password": "isangtite"
     }
   },
@@ -22,5 +22,5 @@
     "maxRetries": 3,
     "retryDelay": 5000
   },
-  "language": "bn"
+  "language": "en"
 }
